@@ -38,6 +38,7 @@ python main.py --base configs/stable-diffusion/v1-finetune_unfrozen.yaml
                 --gpus 0, 
                 --data_root /root/to/training/images 
                 --reg_data_root /root/to/regularization/images 
+                --identifying_word <yyy>
                 --class_word <xxx>
 ```
 
@@ -57,7 +58,7 @@ python scripts/stable_txt2img.py --ddim_eta 0.0
                                  --scale 10.0 
                                  --ddim_steps 100  
                                  --ckpt /path/to/saved/checkpoint/from/training
-                                 --prompt "photo of a sks <class>" 
+                                 --prompt "photo of <identifier> the <class>" 
 ```
 
 In particular, ```sks``` is the identifier, which should be replaced by your choice if you happen to change the identifier, and ```<class>``` is the class word ```--class_word``` for training.

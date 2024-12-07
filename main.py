@@ -166,8 +166,13 @@ def get_parser(**parser_kwargs):
         default="", 
         help="Initialize embedding manager from a checkpoint")
 
-    parser.add_argument("--class_word", 
+    parser.add_argument("--identifying_word",
         type=str, 
+        default="Lassie",
+        help="Placeholder token which will be used to identify the specific instance of the concept in future prompts")
+
+    parser.add_argument("--class_word",
+        type=str,
         default="dog",
         help="Placeholder token which will be used to denote the concept in future prompts")
 
@@ -630,6 +635,10 @@ if __name__ == "__main__":
         # if opt.init_word:
         #     config.model.params.personalization_config.params.initializer_words[0] = opt.init_word
             
+        config.data.params.train.params.identifying_token = opt.identifying_word
+        config.data.params.reg.params.identifying_token = opt.identifying_word
+        config.data.params.validation.params.identifying_token = opt.identifying_word
+
         config.data.params.train.params.placeholder_token = opt.class_word
         config.data.params.reg.params.placeholder_token = opt.class_word
         config.data.params.validation.params.placeholder_token = opt.class_word
